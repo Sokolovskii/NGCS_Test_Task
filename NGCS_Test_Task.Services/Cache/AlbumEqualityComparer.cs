@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using NGCS_Test_Task.Models;
 
-namespace NGCS_Test_Task.Entity
+namespace NGCS_Test_Task.Services.Cache
 {
 	/// <summary>
 	/// Класс, реализующий интерфейс IEqualityComparer для сравнения между собой экземпляров альбомов

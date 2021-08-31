@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using NGCS_Test_Task.Models;
-using NGCS_Test_Task.Entity;
 using System.Linq;
 
 namespace NGCS_Test_Task.Entity.Repository
@@ -39,17 +38,6 @@ namespace NGCS_Test_Task.Entity.Repository
 		public int GetCountInBase(string artistName)
 		{
 			return _context.Albums.Count(t => t.artistName.Contains(artistName));
-		}
-
-		public void Update(List<Album> albums, string artistName)
-		{
-			var comparer = new AlbumEqualityComparer();
-			var newAlbums = albums.Except(_context.Albums.Where(t => t.artistName.Contains(artistName)).ToList(), comparer).ToList();
-			foreach(var album in newAlbums)
-			{
-				_context.Add(album);
-			}
-			_context.SaveChanges();
 		}
 	}
 }
