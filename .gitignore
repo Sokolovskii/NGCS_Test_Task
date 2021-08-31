@@ -1,0 +1,13 @@
+/.vs
+
+NGCS_Test_Task.Entity/bin
+NGCS_Test_Task.Entity/obj
+
+NGCS_Test_Task.Models/bin
+NGCS_Test_Task.Models/obj
+
+NGCS_Test_Task.Services/bin
+NGCS_Test_Task.Services/obj
+
+NGCS_Test_Task/bin
+NGCS_Test_Task/obj
