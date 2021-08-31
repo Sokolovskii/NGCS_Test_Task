@@ -7,7 +7,7 @@ using NGCS_Test_Task.Entity.Repository;
 using NGCS_Test_Task.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace NGCS_Test_Task
 {
@@ -21,6 +21,7 @@ namespace NGCS_Test_Task
 
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddSingleton<ILoggerFactory, LoggerFactory>();
 			services.AddSingleton<AlbumContext>();
 			services.AddSingleton<ISearchService, SearchService>();
 			services.AddSingleton<IAlbumRepository, AlbumRepository>();
@@ -29,9 +30,6 @@ namespace NGCS_Test_Task
 			services.AddSingleton<ICacheService, CacheService>();
 		}
 
-		public void Configure(IApplicationBuilder app)
-		{
-			app.Run(async (context) => await context.Response.WriteAsync("ApplicationStarted"));
-		}
+		public void Configure(IApplicationBuilder app){}
 	}
 }
