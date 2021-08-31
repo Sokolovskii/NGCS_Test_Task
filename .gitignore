@@ -11,3 +11,6 @@ NGCS_Test_Task.Services/obj
 
 NGCS_Test_Task/bin
 NGCS_Test_Task/obj
+
+NGCS_Test_Task.Tests/bin
+NGCS_Test_Task.Tests/obj
