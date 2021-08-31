@@ -33,7 +33,7 @@ namespace NGCS_Test_Task
 					albumCollection = parseService.ParseJson(searchService.SearchAlbumsJson(artistName));
 					cacheService.AddOrUpdate(albumCollection, artistName);
 				}
-				catch(System.Net.WebException ex)
+				catch(System.Net.WebException)
 				{
 					Console.WriteLine("Соединение с сетью нарушено, данные будут извлечены из кэша");
 					albumCollection = cacheService.GetAlbumCollection(artistName);

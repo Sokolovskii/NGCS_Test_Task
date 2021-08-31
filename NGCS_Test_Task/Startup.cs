@@ -7,6 +7,7 @@ using NGCS_Test_Task.Entity.Repository;
 using NGCS_Test_Task.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 
 namespace NGCS_Test_Task
 {
@@ -28,6 +29,9 @@ namespace NGCS_Test_Task
 			services.AddSingleton<ICacheService, CacheService>();
 		}
 
-		public void Configure(IApplicationBuilder app){}
+		public void Configure(IApplicationBuilder app)
+		{
+			app.Run(async (context) => await context.Response.WriteAsync("ApplicationStarted"));
+		}
 	}
 }
