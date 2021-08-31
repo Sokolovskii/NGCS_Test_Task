@@ -1,5 +1,6 @@
 ﻿using NGCS_Test_Task.Models;
 using NGCS_Test_Task.Entity.Repository;
+using NGCS_Test_Task.Services.Exceptions;
 using System.Linq;
 
 namespace NGCS_Test_Task.Services.Cache
@@ -32,7 +33,12 @@ namespace NGCS_Test_Task.Services.Cache
 
 		public AlbumCollection GetAlbumCollection(string artistName)
 		{
-			return _albumRepository.GetAlbums(artistName);
+			var albumCollection = _albumRepository.GetAlbums(artistName);
+			if(albumCollection.resultCount == 0)
+			{
+				throw new ArtistAlbumsNotFoundInDataBase("Альбомы артиста не найдены в кэше, проверьте подключение к сети и повторите запрос");
+			}
+			return albumCollection;
 		}
 
 		/// <summary>

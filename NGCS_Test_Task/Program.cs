@@ -3,6 +3,7 @@ using NGCS_Test_Task.Services.Cache;
 using NGCS_Test_Task.Services.Parse;
 using NGCS_Test_Task.Services.Print;
 using NGCS_Test_Task.Services.Search;
+using NGCS_Test_Task.Services.Exceptions;
 using NGCS_Test_Task.Models;
 using System;
 using Microsoft.AspNetCore.Hosting;
@@ -32,20 +33,25 @@ namespace NGCS_Test_Task
 					albumCollection = parseService.ParseJson(searchService.SearchAlbumsJson(artistName));
 					cacheService.AddOrUpdate(albumCollection, artistName);
 				}
-				catch
+				catch(System.Net.WebException ex)
 				{
 					Console.WriteLine("Соединение с сетью нарушено, данные будут извлечены из кэша");
 					albumCollection = cacheService.GetAlbumCollection(artistName);
+				}
+				catch(Exception ex) when (ex is AlbumsNotFoundException || 
+					ex is ArtistAlbumsNotFoundInDataBase)
+				{
+					Console.WriteLine(ex.Message);
+				}
+				catch
+				{
+					Console.WriteLine("Произошла ошибка, перезагрузите приложение и посторите запрос");
 				}
 				finally
 				{
 					if (albumCollection.resultCount != 0)
 					{
 						printService.PrintInfoAboutAlbums(albumCollection);
-					}
-					else
-					{
-						Console.WriteLine("Исполнитель не найден. Проверьте подключение к сети и уточните запрос");
 					}
 				}
 			}
