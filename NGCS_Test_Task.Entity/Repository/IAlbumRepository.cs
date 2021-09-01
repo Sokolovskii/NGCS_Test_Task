@@ -15,12 +15,6 @@ namespace NGCS_Test_Task.Entity.Repository
 		void Add(List<Album> albums);
 
 		/// <summary>
-		/// Обновление коллекции альбомов при несовпадении числа альбомов в базе и числа альбомов после запроса
-		/// </summary>
-		/// <param name="albums">Коллекция альбомов для обновления</param>
-		void Update(List<Album> albums, string artistName);
-
-		/// <summary>
 		/// Возврат из БД всех альбомов указанного артиста
 		/// </summary>
 		/// <param name="artistName">Имя артиста</param>

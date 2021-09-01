@@ -1,7 +1,6 @@
-﻿using NGCS_Test_Task.Models;
+﻿using System.Linq;
+using NGCS_Test_Task.Models;
 using NGCS_Test_Task.Entity.Repository;
-using NGCS_Test_Task.Services.Exceptions;
-using System.Linq;
 
 namespace NGCS_Test_Task.Services.Cache
 {
@@ -20,25 +19,18 @@ namespace NGCS_Test_Task.Services.Cache
 
 			if(albumCountInBase != albumCollection.resultCount)
 			{
-				if (albumCountInBase == 0)
+				if (albumCountInBase != 0)
 				{
-					_albumRepository.Add(albumCollection.albums);
+					var comparer = new AlbumEqualityComparer();
+					albumCollection.albums = albumCollection.albums.Except(_albumRepository.GetAlbums(artistName).albums, comparer).ToList();
 				}
-				else
-				{
-					_albumRepository.Update(albumCollection.albums, artistName);
-				}
+				_albumRepository.Add(albumCollection.albums);
 			}
 		}
 
 		public AlbumCollection GetAlbumCollection(string artistName)
 		{
-			var albumCollection = _albumRepository.GetAlbums(artistName);
-			if(albumCollection.resultCount == 0)
-			{
-				throw new ArtistAlbumsNotFoundInDataBase("Альбомы артиста не найдены в кэше, проверьте подключение к сети и повторите запрос");
-			}
-			return albumCollection;
+			return _albumRepository.GetAlbums(artistName);
 		}
 
 		/// <summary>

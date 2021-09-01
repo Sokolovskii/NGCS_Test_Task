@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGCS_Test_Task", "NGCS_Test_Task\NGCS_Test_Task.csproj", "{F96141BA-5571-42CE-910B-25453A349E51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NGCS_Test_Task", "NGCS_Test_Task\NGCS_Test_Task.csproj", "{F96141BA-5571-42CE-910B-25453A349E51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGCS_Test_Task.Services", "NGCS_Test_Task.Services\NGCS_Test_Task.Services.csproj", "{63428349-D347-47B6-8898-8B24EEA99DA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NGCS_Test_Task.Services", "NGCS_Test_Task.Services\NGCS_Test_Task.Services.csproj", "{63428349-D347-47B6-8898-8B24EEA99DA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGCS_Test_Task.Models", "NGCS_Test_Task.Models\NGCS_Test_Task.Models.csproj", "{37EF71B5-D18F-421A-83BD-176564580394}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NGCS_Test_Task.Models", "NGCS_Test_Task.Models\NGCS_Test_Task.Models.csproj", "{37EF71B5-D18F-421A-83BD-176564580394}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGCS_Test_Task.Entity", "NGCS_Test_Task.Entity\NGCS_Test_Task.Entity.csproj", "{EC5D4A73-BD90-453B-912F-C56F842EF772}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NGCS_Test_Task.Entity", "NGCS_Test_Task.Entity\NGCS_Test_Task.Entity.csproj", "{EC5D4A73-BD90-453B-912F-C56F842EF772}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGCS_Test_Task.Tests", "NGCS_Test_Task.Tests\NGCS_Test_Task.Tests.csproj", "{49F98D47-815C-44D2-9DEF-F101A3CAB014}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{EC5D4A73-BD90-453B-912F-C56F842EF772}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC5D4A73-BD90-453B-912F-C56F842EF772}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC5D4A73-BD90-453B-912F-C56F842EF772}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49F98D47-815C-44D2-9DEF-F101A3CAB014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49F98D47-815C-44D2-9DEF-F101A3CAB014}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49F98D47-815C-44D2-9DEF-F101A3CAB014}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49F98D47-815C-44D2-9DEF-F101A3CAB014}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
