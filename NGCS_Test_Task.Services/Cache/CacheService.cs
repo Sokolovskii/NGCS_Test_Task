@@ -1,6 +1,6 @@
-﻿using NGCS_Test_Task.Models;
+﻿using System.Linq;
+using NGCS_Test_Task.Models;
 using NGCS_Test_Task.Entity.Repository;
-using System.Linq;
 
 namespace NGCS_Test_Task.Services.Cache
 {
@@ -19,14 +19,12 @@ namespace NGCS_Test_Task.Services.Cache
 
 			if(albumCountInBase != albumCollection.resultCount)
 			{
-				if (albumCountInBase == 0)
+				if (albumCountInBase != 0)
 				{
-					_albumRepository.Add(albumCollection.albums);
+					var comparer = new AlbumEqualityComparer();
+					albumCollection.albums = albumCollection.albums.Except(_albumRepository.GetAlbums(artistName).albums, comparer).ToList();
 				}
-				else
-				{
-					_albumRepository.Update(albumCollection.albums, artistName);
-				}
+				_albumRepository.Add(albumCollection.albums);
 			}
 		}
 

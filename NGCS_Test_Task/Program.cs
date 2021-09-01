@@ -7,6 +7,7 @@ using NGCS_Test_Task.Models;
 using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
+using Microsoft.Extensions.Logging;
 
 namespace NGCS_Test_Task
 {
@@ -17,6 +18,8 @@ namespace NGCS_Test_Task
 			var host = CreateHostBuilder(args).Build();
 
 			var serviceProvider = host.Services.CreateScope().ServiceProvider;
+
+			var logger = serviceProvider.GetRequiredService<ILoggerFactory>().CreateLogger<Program>();
 
 			var searchService = serviceProvider.GetRequiredService<ISearchService>();
 			var parseService = serviceProvider.GetRequiredService<IParseService>();
@@ -32,10 +35,15 @@ namespace NGCS_Test_Task
 					albumCollection = parseService.ParseJson(searchService.SearchAlbumsJson(artistName));
 					cacheService.AddOrUpdate(albumCollection, artistName);
 				}
-				catch
+				catch(System.Net.WebException)
 				{
 					Console.WriteLine("Соединение с сетью нарушено, данные будут извлечены из кэша");
 					albumCollection = cacheService.GetAlbumCollection(artistName);
+				}
+				catch(Exception ex)
+				{
+					logger.LogError(ex.GetType() + "============" + ex.StackTrace);
+					Console.WriteLine("Произошла ошибка, перезагрузите приложение и повторите запрос");
 				}
 				finally
 				{
@@ -45,7 +53,7 @@ namespace NGCS_Test_Task
 					}
 					else
 					{
-						Console.WriteLine("Исполнитель не найден. Проверьте подключение к сети и уточните запрос");
+						Console.WriteLine("Альбомы указанного артиста не найдены. Уточните данные и повторите запрос");
 					}
 				}
 			}

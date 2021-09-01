@@ -7,6 +7,7 @@ using NGCS_Test_Task.Entity.Repository;
 using NGCS_Test_Task.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Logging;
 
 namespace NGCS_Test_Task
 {
@@ -20,6 +21,7 @@ namespace NGCS_Test_Task
 
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddSingleton<ILoggerFactory, LoggerFactory>();
 			services.AddSingleton<AlbumContext>();
 			services.AddSingleton<ISearchService, SearchService>();
 			services.AddSingleton<IAlbumRepository, AlbumRepository>();
