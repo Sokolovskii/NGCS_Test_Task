@@ -19,16 +19,12 @@ namespace NGCS_Test_Task.Services.Cache
 
 			if(albumCountInBase != albumCollection.resultCount)
 			{
-				if (albumCountInBase == 0)
-				{
-					_albumRepository.Add(albumCollection.albums);
-				}
-				else
+				if (albumCountInBase != 0)
 				{
 					var comparer = new AlbumEqualityComparer();
-					var newAlbums = albumCollection.albums.Except(_albumRepository.GetAlbums(artistName).albums, comparer).ToList();
-					_albumRepository.Add(newAlbums);
+					albumCollection.albums = albumCollection.albums.Except(_albumRepository.GetAlbums(artistName).albums, comparer).ToList();
 				}
+				_albumRepository.Add(albumCollection.albums);
 			}
 		}
 
