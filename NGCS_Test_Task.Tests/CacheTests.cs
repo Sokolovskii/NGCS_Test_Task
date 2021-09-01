@@ -2,14 +2,13 @@ using NUnit.Framework;
 using Moq;
 using NGCS_Test_Task.Entity.Repository;
 using NGCS_Test_Task.Services.Cache;
-using NGCS_Test_Task.Services.Exceptions;
 using NGCS_Test_Task.Models;
 using System.Collections.Generic;
 
 namespace NGCS_Test_Task.Tests
 {
 	[TestFixture]
-	public class CacheTests
+	public class CacheTests_GetAlbumCollection
 	{
 		private CacheService _cacheService;
 		private readonly Mock<IAlbumRepository> _albumRepository = new Mock<IAlbumRepository>();
@@ -24,7 +23,7 @@ namespace NGCS_Test_Task.Tests
 		/// Проверка штатной работы метода GetAlbumCollectionCorrect
 		/// </summary>
 		[Test]
-		public void GetAlbumCollectionCorrect()
+		public void GetAlbumCollection_CorrectCollection_CorrectWork()
 		{
 			var artistName = "RAM";
 			var collection = AlbumCollectionGenerator.GetCorrectAlbumCollection(artistName);
@@ -35,10 +34,10 @@ namespace NGCS_Test_Task.Tests
 		}
 
 		/// <summary>
-		/// Проверка нештатной работы метода GetAlbumCollectionCorrect
+		/// Проверка работы метода GetAlbumCollection с нулевым содержимым
 		/// </summary>
 		[Test]
-		public void GetAlbumCollectionNonCorrect()
+		public void GetAlbumCollection_ZeroCollection_CorrectWork()
 		{
 			var artistName = "RAM";
 			var collection = new AlbumCollection
@@ -49,7 +48,7 @@ namespace NGCS_Test_Task.Tests
 
 			_albumRepository.Setup(rep => rep.GetAlbums(artistName)).Returns(collection);
 
-			Assert.Throws<ArtistAlbumsNotFoundInDataBase>(() => _cacheService.GetAlbumCollection(artistName));
+			Assert.DoesNotThrow(() => _cacheService.GetAlbumCollection(artistName));
 		}
 	}
 }

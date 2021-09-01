@@ -40,7 +40,7 @@ namespace NGCS_Test_Task.Tests
 			};
 		}
 
-		private static Album GenerateCorrectAlbum(string artistName)
+		public static Album GenerateCorrectAlbum(string artistName)
 		{
 			var random = new Random();
 			return new Album 
@@ -63,7 +63,7 @@ namespace NGCS_Test_Task.Tests
 			};
 		}
 
-		private static Album GenerateNonCorrectAlbum()
+		public static Album GenerateNonCorrectAlbum()
 		{
 			var random = new Random();
 			return new Album
@@ -86,7 +86,7 @@ namespace NGCS_Test_Task.Tests
 			};
 		}
 
-		private static string GetRandomString(int lenght) 
+		public static string GetRandomString(int lenght) 
 		{
 			var randomizer = new Random();
 			var sb = new StringBuilder(lenght-1);
